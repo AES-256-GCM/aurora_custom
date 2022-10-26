@@ -1,0 +1,10 @@
+{
+  "domain": "aurora_custom",
+  "name": "Custom Aurora inverter integration",
+  "documentation": "https://gitlab.com/AES-256-GCM/aurora_custom",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": ["aurorapy==0.2.6", "prometheus-client==0.11.0"],
+  "iot_class": "local_polling",
+  "version": "0.2.0"
+}
