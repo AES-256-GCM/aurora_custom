@@ -25,6 +25,10 @@ async def async_setup(hass: core.HomeAssistant, config: dict) -> bool:
     # TODO: Validate config (required fields)
     conf = config[DOMAIN]
 
+    update_interval = 60
+    if conf[CONF_UPDATE_INTERVAL]:
+        update_interval = conf[CONF_UPDATE_INTERVAL]
+
     fetcher_factory = InverterFetcherFactory()
     coordinator = MyCoordinator(
         hass,
@@ -32,7 +36,7 @@ async def async_setup(hass: core.HomeAssistant, config: dict) -> bool:
         # Name of the data. For logging purposes.
         name=DOMAIN,
         update_method=fetcher_factory.get_fetcher(conf).fetch_inverter_data,
-        update_interval=timedelta(seconds=60),
+        update_interval=timedelta(seconds=update_interval),
     )
 
     # Fetch initial data so we have data when entities subscribe

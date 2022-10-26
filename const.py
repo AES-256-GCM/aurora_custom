@@ -1,6 +1,7 @@
 DOMAIN = "aurora_custom"
 
 CONF_INVERTER_ADDRESSES = 'inverter_addresses'
+CONF_UPDATE_INTERVAL = 'update_interval'
 
 CONF_SERIAL_DEVICE = 'serial_device'
 #CONF_SERIAL_ADDRESS = 'address'

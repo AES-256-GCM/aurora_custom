@@ -11,6 +11,7 @@ or(!):
 ```yaml
 aurora_custom:
   exporter: http://127.0.0.1:8000
+  update_interval: 60
   inverter_addresses:
     - 2
     - 3
