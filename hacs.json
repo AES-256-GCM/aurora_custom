@@ -1,0 +1,5 @@
+{
+  "name": "Aurora Custom",
+  "content_in_root": true,
+  "iot_class": "local_polling"
+}
