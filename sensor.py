@@ -6,9 +6,9 @@ import logging
 import random
 import copy
 
-from homeassistant.components.sensor import SensorEntity, STATE_CLASS_TOTAL_INCREASING, STATE_CLASS_MEASUREMENT
+from homeassistant.components.sensor import SensorEntity, SensorStateClass, SensorDeviceClass
 from homeassistant.components.binary_sensor import BinarySensorEntity
-from homeassistant.const import POWER_WATT, ENERGY_WATT_HOUR, DEVICE_CLASS_POWER, DEVICE_CLASS_ENERGY
+from homeassistant.const import UnitOfPower, UnitOfEnergy
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
@@ -35,9 +35,9 @@ async def async_setup_platform(hass: HomeAssistant, config, async_add_entities, 
     """
     power_spec_all_inverters = AuroraSensorSpec(address=None,
                                                 metric_data_name=DATA_POWER,
-                                                device_class=DEVICE_CLASS_POWER,
-                                                state_class=STATE_CLASS_MEASUREMENT,
-                                                native_unit_of_measurement=POWER_WATT,
+                                                device_class=SensorDeviceClass.POWER,
+                                                state_class=SensorStateClass.MEASUREMENT,
+                                                native_unit_of_measurement=UnitOfPower.WATT,
                                                 user_friendly_name="Aurora inverter power production total",
                                                 unique_id="aurora_inverter_power_production_total",
                                                 # Force updates only for power spec since it's needed for
@@ -46,9 +46,9 @@ async def async_setup_platform(hass: HomeAssistant, config, async_add_entities, 
     sensors.append(AuroraSensor(coordinator, sensor_spec=power_spec_all_inverters))
     energy_spec_all_inverters = AuroraSensorSpec(address=None,
                                                  metric_data_name=DATA_ENERGY_TOTAL,
-                                                 device_class=DEVICE_CLASS_ENERGY,
-                                                 state_class=STATE_CLASS_TOTAL_INCREASING,
-                                                 native_unit_of_measurement=ENERGY_WATT_HOUR,
+                                                 device_class=SensorDeviceClass.ENERGY,
+                                                 state_class=SensorStateClass.TOTAL_INCREASING,
+                                                 native_unit_of_measurement=UnitOfEnergy.WATT_HOUR,
                                                  user_friendly_name="Aurora inverter energy total production total",
                                                  unique_id="aurora_inverter_energy_total_production_total")
     sensors.append(AuroraNoneIsLastNonNoneValueNonAllowPartialSensor(coordinator, sensor_spec=energy_spec_all_inverters))
